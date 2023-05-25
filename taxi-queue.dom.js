@@ -37,6 +37,12 @@ leaveTaxiQueue.addEventListener('click', () => {
     localStorage['taxis'] = taxiQueue.taxiDepart()
     passenger_queue_count.innerHTML = taxiQueue.queueLength()
     taxi_queue_count.innerHTML = taxiQueue.taxiQueueLength()
-    taxi_departing_count.innerHTML = taxiQueue.taxiQueueLength()
+
+    taxi_departing_count.innerHTML = 1
+    setTimeout(() => {
+        taxi_departing_count.innerHTML = ''
+    }, 3000)
+
+
 })
 

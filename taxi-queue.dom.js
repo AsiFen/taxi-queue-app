@@ -14,11 +14,11 @@ var storePassengerCount = 0;
 var storeTaxiCount = 0;
 
 if (localStorage['passengers']) {
-    storePassengerCount = Number(localStorage['passengers'])
+    storePassengerCount = (localStorage['passengers'])
 }
 
 if (localStorage['taxis']) {
-    storeTaxiCount = Number(localStorage['taxis'])
+    storeTaxiCount = (localStorage['taxis'])
 }
 // create Factory Function instance
 

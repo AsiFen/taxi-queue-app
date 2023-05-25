@@ -53,10 +53,10 @@ leaveTaxiQueue.addEventListener('click', () => {
 
     taxi_departing_count.innerHTML = 1
 
-    if (taxiQueue.taxiQueueLength() == 0 || taxiQueue.queueLength() < 12) {
-        alert.innerHTML = 'Cant make anymore trips'
+    if (taxiQueue.taxiQueueLength() == 0) {
+        alert.innerHTML = 'No more trips: No Taxis'
         alert.classList.add('alert')
-        alert.style.padding = '0.4em'
+        alert.style.padding = '0.8em'
         taxi_departing_count.innerHTML = 0
 
         setTimeout(() => {
@@ -66,8 +66,21 @@ leaveTaxiQueue.addEventListener('click', () => {
             alert.style.padding = '0px'
         }, 3000)
     }
-})
 
+if (taxiQueue.queueLength() < 12) {
+    alert.innerHTML = 'No more trips: Queue is less than 12'
+    alert.classList.add('alert')
+    alert.style.padding = '0.8em'
+    taxi_departing_count.innerHTML = 0
+
+    setTimeout(() => {
+        taxi_departing_count.innerHTML = 0
+        alert.classList.remove('alert')
+        alert.innerHTML = ''
+        alert.style.padding = '0px'
+    }, 3000)
+}
+})
 
 // leaveTaxiQueue.addEventListener('click', () => {
 //     localStorage['taxis'] = taxiQueue.taxiDepart()

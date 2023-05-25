@@ -1,6 +1,6 @@
-function TaxiQueue() {
-	var personsCount = 0;
-	var taxisCount = 0;
+function TaxiQueue(storePersons, storeTaxis) {
+let personsCount = storePersons;
+	var taxisCount = storeTaxis;
 
 	function joinQueue() {
 		personsCount++
@@ -17,8 +17,6 @@ function TaxiQueue() {
 			taxisCount--
 			personsCount = personsCount - 12
 		}
-		console.log(personsCount);
-
 
 	}
 
@@ -33,6 +31,7 @@ function TaxiQueue() {
 	}
 
 	function queueLength() {
+		console.log(personsCount);
 
 		return personsCount
 

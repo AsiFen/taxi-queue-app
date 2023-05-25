@@ -179,4 +179,38 @@ describe('The taxi queue app', function () {
 		assert.equal(15, taxiQueue.queueLength());
 
 	});
+
+	it('There are 2 people nd 1 taxi already from the last line', function () {
+
+		const taxiQueue = TaxiQueue(2,1);
+
+		taxiQueue.joinQueue(); // 1
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue(); // 12
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+
+		// data before a taxi departs
+		assert.equal(1, taxiQueue.taxiQueueLength());
+		assert.equal(17, taxiQueue.queueLength());
+
+		// this function call should do nothing as there is no taxis in the taxi queue
+		taxiQueue.taxiDepart();
+		// data after a taxi departed
+		assert.equal(0, taxiQueue.taxiQueueLength());
+		assert.equal(5, taxiQueue.queueLength());
+
+	});
+	
+
 });

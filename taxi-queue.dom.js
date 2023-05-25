@@ -7,6 +7,7 @@ var leaveTaxiQueue = document.querySelector('.depart');
 var passenger_queue_count = document.querySelector('.passenger_queue_count')
 var taxi_queue_count = document.querySelector('.taxi_queue_count')
 var taxi_departing_count = document.querySelector('.taxi_depart_count')
+var alert = document.querySelector('.alert')
 
 // DOM element references
 var storePassengerCount = 0;
@@ -39,9 +40,21 @@ leaveTaxiQueue.addEventListener('click', () => {
     taxi_queue_count.innerHTML = taxiQueue.taxiQueueLength()
 
     taxi_departing_count.innerHTML = 1
-    setTimeout(() => {
-        taxi_departing_count.innerHTML = ''
-    }, 3000)
+
+    if(taxiQueue.taxiQueueLength() == 0 || taxiQueue.queueLength() < 12){
+        alert.innerHTML = 'Cant make anymore trips'
+        alert.classList.add('alert')
+        alert.style.padding = '0.8em'
+        taxi_departing_count.innerHTML = 0
+
+        setTimeout(() => {
+            taxi_departing_count.innerHTML = 0
+            alert.classList.remove('alert')
+            alert.innerHTML = ''
+            alert.style.padding = '0px'
+        }, 3000)
+
+    }
 
 
 })

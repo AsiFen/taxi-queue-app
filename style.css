@@ -20,6 +20,16 @@ body {
 	border-radius: 0.5em;
 }
 
+
+.alert{
+border: hotpink, solid, 9px;
+/* padding: 0.8em; */
+background-color:rgb(240, 104, 104);
+margin: 0.3em;
+width: 1em;
+height: 2em;
+}
+
 button {
 	padding: 1em;
 	border-radius: 0.5em;

@@ -174,7 +174,6 @@ describe('The taxi queue app', function () {
 
 		// this function call should do nothing as there is no taxis in the taxi queue
 		taxiQueue.taxiDepart();
-
 		// data after a taxi departed
 		assert.equal(0, taxiQueue.taxiQueueLength());
 		assert.equal(15, taxiQueue.queueLength());

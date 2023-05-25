@@ -13,6 +13,13 @@ var alert = document.querySelector('.alert')
 var storePassengerCount = 0;
 var storeTaxiCount = 0;
 
+if (localStorage['passengers']) {
+    storePassengerCount = Number(localStorage['passengers'])
+}
+
+if (localStorage['taxis']) {
+    storeTaxiCount = Number(localStorage['taxis'])
+}
 // create Factory Function instance
 
 const taxiQueue = TaxiQueue(storePassengerCount, storePassengerCount);
@@ -20,31 +27,36 @@ const taxiQueue = TaxiQueue(storePassengerCount, storePassengerCount);
 
 // DOM events
 joinPeopleQueue.addEventListener('click', () => {
-    localStorage['passengers'] = taxiQueue.joinQueue()
+    taxiQueue.joinQueue()
+    localStorage['passengers'] = taxiQueue.queueLength()
     passenger_queue_count.innerHTML = taxiQueue.queueLength()
 })
 
 leavePeopleQueue.addEventListener('click', () => {
-    localStorage['passengers'] = taxiQueue.leaveQueue()
+    taxiQueue.leaveQueue()
+    localStorage['passengers'] = taxiQueue.queueLength()
     passenger_queue_count.innerHTML = taxiQueue.queueLength()
 })
 
 joinTaxiQueue.addEventListener('click', () => {
-    localStorage['taxis'] = taxiQueue.joinTaxiQueue()
+    taxiQueue.joinTaxiQueue()
+    localStorage['taxis'] = taxiQueue.taxiQueueLength()
     taxi_queue_count.innerHTML = taxiQueue.taxiQueueLength()
 })
 
 leaveTaxiQueue.addEventListener('click', () => {
-    localStorage['taxis'] = taxiQueue.taxiDepart()
+    taxiQueue.taxiDepart()
+    localStorage['taxis'] = taxiQueue.taxiQueueLength()
+    localStorage['passengers'] = taxiQueue.queueLength()
     passenger_queue_count.innerHTML = taxiQueue.queueLength()
     taxi_queue_count.innerHTML = taxiQueue.taxiQueueLength()
 
     taxi_departing_count.innerHTML = 1
 
-    if(taxiQueue.taxiQueueLength() == 0 || taxiQueue.queueLength() < 12){
+    if (taxiQueue.taxiQueueLength() == 0 || taxiQueue.queueLength() < 12) {
         alert.innerHTML = 'Cant make anymore trips'
         alert.classList.add('alert')
-        alert.style.padding = '0.8em'
+        alert.style.padding = '0.4em'
         taxi_departing_count.innerHTML = 0
 
         setTimeout(() => {
@@ -53,9 +65,39 @@ leaveTaxiQueue.addEventListener('click', () => {
             alert.innerHTML = ''
             alert.style.padding = '0px'
         }, 3000)
-
     }
-
-
 })
+
+
+// leaveTaxiQueue.addEventListener('click', () => {
+//     localStorage['taxis'] = taxiQueue.taxiDepart()
+//     passenger_queue_count.innerHTML = taxiQueue.queueLength()
+//     taxi_queue_count.innerHTML = taxiQueue.taxiQueueLength()
+
+//     taxi_departing_count.innerHTML = 1
+
+//     if (taxiQueue.taxiQueueLength() == 0 || taxiQueue.queueLength() < 12) {
+//         alert.innerHTML = 'Cant make anymore trips'
+//         alert.classList.add('alert')
+//         alert.style.padding = '0.8em'
+//         taxi_departing_count.innerHTML = 0
+
+//         setTimeout(() => {
+//             taxi_departing_count.innerHTML = 0
+//             alert.classList.remove('alert')
+//             alert.innerHTML = ''
+//             alert.style.padding = '0px'
+//         }, 3000)
+
+//     }
+// })
+if (storePassengerCount) {
+    passenger_queue_count.innerHTML = storePassengerCount
+}
+if (storeTaxiCount) {
+    taxi_queue_count.innerHTML = storeTaxiCount
+    taxi_departing_count.innerHTML = 1
+}
+
+
 

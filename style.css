@@ -24,12 +24,17 @@ body {
 .alert{
 border: hotpink, solid, 9px;
 /* padding: 0.8em; */
-background-color:rgb(240, 104, 104);
-margin: 0.3em;
+background-color:rgb(228, 48, 48);
+margin: 0.6em;
 width: 1em;
-height: 2em;
+height: 1em;
+text-align: center;
 }
 
+.div{
+margin: 2em;
+
+}
 button {
 	padding: 1em;
 	border-radius: 0.5em;
